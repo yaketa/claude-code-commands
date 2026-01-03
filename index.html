@@ -532,6 +532,265 @@
     .no-results-action:hover {
       background: var(--bg-hover);
     }
+
+    /* === モーダル === */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s, visibility 0.2s;
+      padding: 16px;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal {
+      background: var(--bg-primary);
+      border-radius: 12px;
+      max-width: 560px;
+      width: 100%;
+      max-height: calc(100vh - 32px);
+      overflow-y: auto;
+      position: relative;
+      transform: translateY(20px);
+      transition: transform 0.2s;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-overlay.open .modal {
+      transform: translateY(0);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.25rem;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.15s, color 0.15s;
+      z-index: 1;
+    }
+
+    .modal-close:hover {
+      background: var(--bg-hover);
+      color: var(--text-primary);
+    }
+
+    .modal-header {
+      padding: 24px 24px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .modal-tag {
+      display: inline-block;
+      font-size: 0.6875rem;
+      color: var(--text-tertiary);
+      background: var(--bg-secondary);
+      padding: 2px 8px;
+      border-radius: 3px;
+      margin-bottom: 8px;
+    }
+
+    .modal-cmd {
+      font-family: 'SF Mono', 'Monaco', 'Menlo', 'Consolas', monospace;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--command);
+      margin-bottom: 8px;
+    }
+
+    .modal-desc {
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .modal-body {
+      padding: 16px 24px 24px;
+    }
+
+    .modal-section {
+      margin-bottom: 20px;
+    }
+
+    .modal-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .modal-section h3 {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    /* 引数 */
+    .modal-args-list {
+      list-style: none;
+    }
+
+    .modal-arg-item {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 0.875rem;
+    }
+
+    .modal-arg-name {
+      font-family: 'SF Mono', 'Monaco', 'Menlo', 'Consolas', monospace;
+      color: var(--accent);
+      background: var(--accent-bg);
+      padding: 2px 6px;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+
+    .modal-arg-optional {
+      color: var(--text-tertiary);
+      font-size: 0.75rem;
+    }
+
+    .modal-arg-desc {
+      color: var(--text-secondary);
+    }
+
+    /* 使用例 */
+    .modal-examples-list {
+      list-style: none;
+    }
+
+    .modal-example-item {
+      font-family: 'SF Mono', 'Monaco', 'Menlo', 'Consolas', monospace;
+      font-size: 0.8125rem;
+      background: var(--bg-secondary);
+      padding: 10px 14px;
+      border-radius: 6px;
+      margin-bottom: 6px;
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: background-color 0.15s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-example-item:hover {
+      background: var(--bg-hover);
+    }
+
+    .modal-example-copy {
+      font-size: 0.6875rem;
+      color: var(--text-tertiary);
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+
+    .modal-example-item:hover .modal-example-copy {
+      opacity: 1;
+    }
+
+    /* Tips */
+    .modal-tips-text {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      background: var(--accent-bg);
+      padding: 12px 14px;
+      border-radius: 6px;
+      border-left: 3px solid var(--accent);
+    }
+
+    /* 関連コマンド */
+    .modal-related-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .modal-related-chip {
+      font-family: 'SF Mono', 'Monaco', 'Menlo', 'Consolas', monospace;
+      font-size: 0.8125rem;
+      padding: 6px 12px;
+      background: var(--bg-secondary);
+      color: var(--command);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.15s, transform 0.1s;
+      border: none;
+    }
+
+    .modal-related-chip:hover {
+      background: var(--bg-hover);
+      transform: translateY(-1px);
+    }
+
+    /* フッター */
+    .modal-footer {
+      padding: 16px 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .modal-copy-btn {
+      padding: 10px 20px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #fff;
+      background: var(--accent);
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.15s, transform 0.1s;
+    }
+
+    .modal-copy-btn:hover {
+      filter: brightness(1.1);
+      transform: translateY(-1px);
+    }
+
+    .modal-copy-btn:active {
+      transform: translateY(0);
+    }
+
+    /* モバイル対応 */
+    @media (max-width: 700px) {
+      .modal-overlay {
+        padding: 0;
+        align-items: flex-end;
+      }
+
+      .modal {
+        max-height: 85vh;
+        border-radius: 16px 16px 0 0;
+        transform: translateY(100%);
+      }
+
+      .modal-overlay.open .modal {
+        transform: translateY(0);
+      }
+    }
   </style>
 </head>
 <body>
@@ -608,56 +867,519 @@
 
   <div class="toast" id="toast">コピーしました</div>
 
+  <!-- モーダル -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-cmd">
+      <button class="modal-close" id="modal-close" aria-label="閉じる">&times;</button>
+      <div class="modal-header">
+        <span class="modal-tag" id="modal-tag"></span>
+        <h2 class="modal-cmd" id="modal-cmd"></h2>
+        <p class="modal-desc" id="modal-desc"></p>
+      </div>
+      <div class="modal-body">
+        <section class="modal-section" id="modal-args-section">
+          <h3>引数</h3>
+          <ul class="modal-args-list" id="modal-args-list"></ul>
+        </section>
+        <section class="modal-section" id="modal-examples-section">
+          <h3>使用例</h3>
+          <ul class="modal-examples-list" id="modal-examples-list"></ul>
+        </section>
+        <section class="modal-section" id="modal-tips-section">
+          <h3>Tips</h3>
+          <p class="modal-tips-text" id="modal-tips-text"></p>
+        </section>
+        <section class="modal-section" id="modal-related-section">
+          <h3>関連コマンド</h3>
+          <div class="modal-related-list" id="modal-related-list"></div>
+        </section>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-copy-btn" id="modal-copy-btn">コマンドをコピー</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     const commands = [
       // セッション
-      { cmd: "/clear", desc: "会話履歴をクリアして新しいセッションを開始", cat: "session" },
-      { cmd: "/compact [指示]", desc: "会話を要約して圧縮。オプションで注力する内容を指定可能", cat: "session" },
-      { cmd: "/resume [セッション]", desc: "過去のセッションを再開。IDや名前で指定、または一覧から選択", cat: "session" },
-      { cmd: "/rename <名前>", desc: "現在のセッションに名前を付けて管理しやすくする", cat: "session" },
-      { cmd: "/rewind", desc: "会話やコードの変更を巻き戻す", cat: "session" },
-      { cmd: "/export [ファイル名]", desc: "現在の会話をファイルまたはクリップボードにエクスポート", cat: "session" },
-      { cmd: "/exit", desc: "Claude Codeを終了", cat: "session" },
+      {
+        cmd: "/clear",
+        desc: "会話履歴をクリアして新しいセッションを開始",
+        cat: "session",
+        details: {
+          args: [],
+          examples: ["/clear"],
+          tips: "新しいトピックを始める時や、コンテキストをリセットしたい時に便利。会話履歴は完全に削除されます。",
+          related: ["/compact", "/resume", "/rewind"]
+        }
+      },
+      {
+        cmd: "/compact [指示]",
+        desc: "会話を要約して圧縮。オプションで注力する内容を指定可能",
+        cat: "session",
+        details: {
+          args: [
+            { name: "指示", optional: true, desc: "要約時に注力してほしい内容を指定" }
+          ],
+          examples: ["/compact", "/compact コードの変更点に注目して"],
+          tips: "コンテキストが長くなった時に使用。重要な情報を保持しながらトークンを節約できます。",
+          related: ["/clear", "/context"]
+        }
+      },
+      {
+        cmd: "/resume [セッション]",
+        desc: "過去のセッションを再開。IDや名前で指定、または一覧から選択",
+        cat: "session",
+        details: {
+          args: [
+            { name: "セッション", optional: true, desc: "セッションIDまたは名前。省略時は一覧表示" }
+          ],
+          examples: ["/resume", "/resume my-project", "/resume abc123"],
+          tips: "前回の作業を継続したい時に使用。/rename で名前を付けておくと見つけやすい。",
+          related: ["/rename", "/clear"]
+        }
+      },
+      {
+        cmd: "/rename <名前>",
+        desc: "現在のセッションに名前を付けて管理しやすくする",
+        cat: "session",
+        details: {
+          args: [
+            { name: "名前", optional: false, desc: "セッションに付ける名前" }
+          ],
+          examples: ["/rename auth-feature", "/rename バグ修正-issue123"],
+          tips: "後で /resume する時に見つけやすくなります。プロジェクト名や作業内容を含めると良い。",
+          related: ["/resume"]
+        }
+      },
+      {
+        cmd: "/rewind",
+        desc: "会話やコードの変更を巻き戻す",
+        cat: "session",
+        details: {
+          args: [],
+          examples: ["/rewind"],
+          tips: "間違った変更を取り消したい時に使用。Git の変更も含めて巻き戻せます。",
+          related: ["/clear"]
+        }
+      },
+      {
+        cmd: "/export [ファイル名]",
+        desc: "現在の会話をファイルまたはクリップボードにエクスポート",
+        cat: "session",
+        details: {
+          args: [
+            { name: "ファイル名", optional: true, desc: "出力ファイル名。省略時はクリップボードにコピー" }
+          ],
+          examples: ["/export", "/export conversation.md", "/export ~/logs/session.txt"],
+          tips: "会話を記録・共有したい時に便利。Markdown形式で出力されます。",
+          related: []
+        }
+      },
+      {
+        cmd: "/exit",
+        desc: "Claude Codeを終了",
+        cat: "session",
+        details: {
+          args: [],
+          examples: ["/exit"],
+          tips: "Ctrl+C でも終了できます。セッションは自動保存されるので /resume で再開可能。",
+          related: ["/resume"]
+        }
+      },
       // 設定
-      { cmd: "/config", desc: "設定画面（Configタブ）を開く", cat: "config" },
-      { cmd: "/status", desc: "バージョン、モデル、アカウント、接続状態を表示", cat: "config" },
-      { cmd: "/model", desc: "使用するAIモデルを選択・変更", cat: "config" },
-      { cmd: "/permissions", desc: "ツールの権限設定を表示・更新", cat: "config" },
-      { cmd: "/memory", desc: "CLAUDE.mdメモリファイルを編集", cat: "config" },
-      { cmd: "/hooks", desc: "ツールイベントのフック設定を管理", cat: "config" },
-      { cmd: "/output-style [スタイル]", desc: "出力スタイルを設定（verbose, concise等）", cat: "config" },
-      { cmd: "/privacy-settings", desc: "プライバシー設定を表示・更新", cat: "config" },
-      { cmd: "/terminal-setup", desc: "Shift+Enterで改行するキーバインドをインストール（iTerm2/VSCode）", cat: "config" },
-      { cmd: "/statusline", desc: "ステータスラインUIを設定", cat: "config" },
-      { cmd: "/vim", desc: "Vimモードを有効化（挿入/コマンドモード切替）", cat: "config" },
+      {
+        cmd: "/config",
+        desc: "設定画面（Configタブ）を開く",
+        cat: "config",
+        details: {
+          args: [],
+          examples: ["/config"],
+          tips: "各種設定を一覧・変更できるインタラクティブな画面を開きます。",
+          related: ["/model", "/permissions", "/privacy-settings"]
+        }
+      },
+      {
+        cmd: "/status",
+        desc: "バージョン、モデル、アカウント、接続状態を表示",
+        cat: "config",
+        details: {
+          args: [],
+          examples: ["/status"],
+          tips: "現在の設定状況を確認したい時に使用。トラブルシューティングにも便利。",
+          related: ["/doctor", "/model"]
+        }
+      },
+      {
+        cmd: "/model",
+        desc: "使用するAIモデルを選択・変更",
+        cat: "config",
+        details: {
+          args: [],
+          examples: ["/model"],
+          tips: "Claude Sonnet、Opus など利用可能なモデルから選択できます。",
+          related: ["/status", "/config"]
+        }
+      },
+      {
+        cmd: "/permissions",
+        desc: "ツールの権限設定を表示・更新",
+        cat: "config",
+        details: {
+          args: [],
+          examples: ["/permissions"],
+          tips: "ファイル編集、コマンド実行などの権限を細かく制御できます。",
+          related: ["/config", "/sandbox"]
+        }
+      },
+      {
+        cmd: "/memory",
+        desc: "CLAUDE.mdメモリファイルを編集",
+        cat: "config",
+        details: {
+          args: [],
+          examples: ["/memory"],
+          tips: "プロジェクト固有の指示やコンテキストを保存。毎回の会話で自動的に読み込まれます。",
+          related: ["/init"]
+        }
+      },
+      {
+        cmd: "/hooks",
+        desc: "ツールイベントのフック設定を管理",
+        cat: "config",
+        details: {
+          args: [],
+          examples: ["/hooks"],
+          tips: "ファイル保存時やコマンド実行時に自動実行するスクリプトを設定できます。",
+          related: ["/config"]
+        }
+      },
+      {
+        cmd: "/output-style [スタイル]",
+        desc: "出力スタイルを設定（verbose, concise等）",
+        cat: "config",
+        details: {
+          args: [
+            { name: "スタイル", optional: true, desc: "verbose（詳細）, concise（簡潔）など" }
+          ],
+          examples: ["/output-style", "/output-style concise", "/output-style verbose"],
+          tips: "応答の詳細度を調整。簡潔な回答が欲しい時は concise を使用。",
+          related: ["/config"]
+        }
+      },
+      {
+        cmd: "/privacy-settings",
+        desc: "プライバシー設定を表示・更新",
+        cat: "config",
+        details: {
+          args: [],
+          examples: ["/privacy-settings"],
+          tips: "データ収集やログに関する設定を管理できます。",
+          related: ["/config"]
+        }
+      },
+      {
+        cmd: "/terminal-setup",
+        desc: "Shift+Enterで改行するキーバインドをインストール（iTerm2/VSCode）",
+        cat: "config",
+        details: {
+          args: [],
+          examples: ["/terminal-setup"],
+          tips: "複数行の入力を楽にするキーバインド設定。iTerm2またはVSCode統合ターミナルで使用。",
+          related: ["/vim"]
+        }
+      },
+      {
+        cmd: "/statusline",
+        desc: "ステータスラインUIを設定",
+        cat: "config",
+        details: {
+          args: [],
+          examples: ["/statusline"],
+          tips: "ターミナル下部に表示されるステータスバーのカスタマイズが可能。",
+          related: ["/config"]
+        }
+      },
+      {
+        cmd: "/vim",
+        desc: "Vimモードを有効化（挿入/コマンドモード切替）",
+        cat: "config",
+        details: {
+          args: [],
+          examples: ["/vim"],
+          tips: "Vimユーザー向け。ESCでコマンドモード、iで挿入モードに切り替え。",
+          related: ["/terminal-setup"]
+        }
+      },
       // 開発
-      { cmd: "/init", desc: "プロジェクトをCLAUDE.mdガイドで初期化", cat: "dev" },
-      { cmd: "/review", desc: "コードレビューをリクエスト", cat: "dev" },
-      { cmd: "/security-review", desc: "現在のブランチの変更に対してセキュリティレビューを実行", cat: "dev" },
-      { cmd: "/pr-comments", desc: "プルリクエストのコメントを表示", cat: "dev" },
-      { cmd: "/add-dir", desc: "追加の作業ディレクトリを登録", cat: "dev" },
-      { cmd: "/sandbox", desc: "サンドボックス実行を有効化（ファイル・ネットワーク分離）", cat: "dev" },
-      { cmd: "/install-github-app", desc: "リポジトリにClaude GitHub Actionsをセットアップ", cat: "dev" },
+      {
+        cmd: "/init",
+        desc: "プロジェクトをCLAUDE.mdガイドで初期化",
+        cat: "dev",
+        details: {
+          args: [],
+          examples: ["/init"],
+          tips: "新しいプロジェクトで最初に実行。CLAUDE.md ファイルが作成され、プロジェクト固有の指示を保存できます。",
+          related: ["/memory"]
+        }
+      },
+      {
+        cmd: "/review",
+        desc: "コードレビューをリクエスト",
+        cat: "dev",
+        details: {
+          args: [],
+          examples: ["/review"],
+          tips: "現在の変更に対するコードレビューを依頼。改善点やバグの可能性を指摘してもらえます。",
+          related: ["/security-review", "/pr-comments"]
+        }
+      },
+      {
+        cmd: "/security-review",
+        desc: "現在のブランチの変更に対してセキュリティレビューを実行",
+        cat: "dev",
+        details: {
+          args: [],
+          examples: ["/security-review"],
+          tips: "脆弱性やセキュリティ上の問題をチェック。PRを出す前に実行するのがおすすめ。",
+          related: ["/review"]
+        }
+      },
+      {
+        cmd: "/pr-comments",
+        desc: "プルリクエストのコメントを表示",
+        cat: "dev",
+        details: {
+          args: [],
+          examples: ["/pr-comments"],
+          tips: "GitHub PRのコメントを確認・対応する際に便利。",
+          related: ["/review", "/install-github-app"]
+        }
+      },
+      {
+        cmd: "/add-dir",
+        desc: "追加の作業ディレクトリを登録",
+        cat: "dev",
+        details: {
+          args: [],
+          examples: ["/add-dir"],
+          tips: "複数のプロジェクトやディレクトリを同時に扱いたい時に使用。",
+          related: []
+        }
+      },
+      {
+        cmd: "/sandbox",
+        desc: "サンドボックス実行を有効化（ファイル・ネットワーク分離）",
+        cat: "dev",
+        details: {
+          args: [],
+          examples: ["/sandbox"],
+          tips: "信頼できないコードを実行する際に使用。ファイルシステムとネットワークが分離されます。",
+          related: ["/permissions"]
+        }
+      },
+      {
+        cmd: "/install-github-app",
+        desc: "リポジトリにClaude GitHub Actionsをセットアップ",
+        cat: "dev",
+        details: {
+          args: [],
+          examples: ["/install-github-app"],
+          tips: "GitHub ActionsでClaudeを使ったCI/CDを設定。PRの自動レビューなどが可能に。",
+          related: ["/pr-comments"]
+        }
+      },
       // アカウント
-      { cmd: "/login", desc: "Anthropicアカウントを切り替え", cat: "account" },
-      { cmd: "/logout", desc: "Anthropicアカウントからサインアウト", cat: "account" },
+      {
+        cmd: "/login",
+        desc: "Anthropicアカウントを切り替え",
+        cat: "account",
+        details: {
+          args: [],
+          examples: ["/login"],
+          tips: "別のアカウントに切り替えたい時や、再認証が必要な時に使用。",
+          related: ["/logout", "/status"]
+        }
+      },
+      {
+        cmd: "/logout",
+        desc: "Anthropicアカウントからサインアウト",
+        cat: "account",
+        details: {
+          args: [],
+          examples: ["/logout"],
+          tips: "共有PCで作業を終える時などに使用。",
+          related: ["/login"]
+        }
+      },
       // 情報
-      { cmd: "/help", desc: "使い方のヘルプを表示", cat: "info" },
-      { cmd: "/doctor", desc: "Claude Codeのインストール状態をチェック", cat: "info" },
-      { cmd: "/cost", desc: "トークン使用量の統計を表示", cat: "info" },
-      { cmd: "/usage", desc: "プラン使用量制限とレート制限状況を表示（サブスク限定）", cat: "info" },
-      { cmd: "/stats", desc: "日次使用量、セッション履歴、連続日数、モデル使用状況を可視化", cat: "info" },
-      { cmd: "/context", desc: "現在のコンテキスト使用量をカラーグリッドで可視化", cat: "info" },
-      { cmd: "/release-notes", desc: "リリースノートを表示", cat: "info" },
-      { cmd: "/bug", desc: "バグを報告（会話がAnthropicに送信される）", cat: "info" },
+      {
+        cmd: "/help",
+        desc: "使い方のヘルプを表示",
+        cat: "info",
+        details: {
+          args: [],
+          examples: ["/help"],
+          tips: "コマンド一覧や使い方のガイドを表示。困った時はまずこれを実行。",
+          related: ["/doctor"]
+        }
+      },
+      {
+        cmd: "/doctor",
+        desc: "Claude Codeのインストール状態をチェック",
+        cat: "info",
+        details: {
+          args: [],
+          examples: ["/doctor"],
+          tips: "問題が発生した時の診断ツール。依存関係や設定の問題を検出します。",
+          related: ["/status", "/help"]
+        }
+      },
+      {
+        cmd: "/cost",
+        desc: "トークン使用量の統計を表示",
+        cat: "info",
+        details: {
+          args: [],
+          examples: ["/cost"],
+          tips: "現在のセッションや累計のトークン使用量・コストを確認できます。",
+          related: ["/usage", "/stats"]
+        }
+      },
+      {
+        cmd: "/usage",
+        desc: "プラン使用量制限とレート制限状況を表示（サブスク限定）",
+        cat: "info",
+        details: {
+          args: [],
+          examples: ["/usage"],
+          tips: "サブスクリプションプランの使用量上限と現在の使用状況を確認。",
+          related: ["/cost", "/stats"]
+        }
+      },
+      {
+        cmd: "/stats",
+        desc: "日次使用量、セッション履歴、連続日数、モデル使用状況を可視化",
+        cat: "info",
+        details: {
+          args: [],
+          examples: ["/stats"],
+          tips: "使用パターンを視覚的に確認できるダッシュボード。",
+          related: ["/cost", "/usage"]
+        }
+      },
+      {
+        cmd: "/context",
+        desc: "現在のコンテキスト使用量をカラーグリッドで可視化",
+        cat: "info",
+        details: {
+          args: [],
+          examples: ["/context"],
+          tips: "コンテキストウィンドウの使用状況を視覚化。いっぱいになったら /compact を検討。",
+          related: ["/compact", "/cost"]
+        }
+      },
+      {
+        cmd: "/release-notes",
+        desc: "リリースノートを表示",
+        cat: "info",
+        details: {
+          args: [],
+          examples: ["/release-notes"],
+          tips: "最新の更新内容や新機能を確認できます。",
+          related: ["/help"]
+        }
+      },
+      {
+        cmd: "/bug",
+        desc: "バグを報告（会話がAnthropicに送信される）",
+        cat: "info",
+        details: {
+          args: [],
+          examples: ["/bug"],
+          tips: "バグを発見した時に使用。会話の内容が診断のためにAnthropicに送信されます。",
+          related: ["/doctor"]
+        }
+      },
       // 高度
-      { cmd: "/mcp", desc: "MCPサーバー接続とOAuth認証を管理", cat: "advanced" },
-      { cmd: "/agents", desc: "特定タスク用のカスタムAIサブエージェントを管理", cat: "advanced" },
-      { cmd: "/plugin", desc: "Claude Codeプラグインを管理", cat: "advanced" },
-      { cmd: "/bashes", desc: "バックグラウンドタスクを一覧・管理", cat: "advanced" },
-      { cmd: "/tasks", desc: "実行中のタスクを表示", cat: "advanced" },
-      { cmd: "/todos", desc: "現在のTODOアイテムを一覧表示", cat: "advanced" },
-      { cmd: "/ide", desc: "IDE統合を管理し、ステータスを表示", cat: "advanced" },
+      {
+        cmd: "/mcp",
+        desc: "MCPサーバー接続とOAuth認証を管理",
+        cat: "advanced",
+        details: {
+          args: [],
+          examples: ["/mcp"],
+          tips: "Model Context Protocol (MCP) サーバーの接続管理。外部ツールとの連携に使用。",
+          related: ["/plugin"]
+        }
+      },
+      {
+        cmd: "/agents",
+        desc: "特定タスク用のカスタムAIサブエージェントを管理",
+        cat: "advanced",
+        details: {
+          args: [],
+          examples: ["/agents"],
+          tips: "特定のタスクに特化したエージェントを作成・管理できます。",
+          related: ["/tasks"]
+        }
+      },
+      {
+        cmd: "/plugin",
+        desc: "Claude Codeプラグインを管理",
+        cat: "advanced",
+        details: {
+          args: [],
+          examples: ["/plugin"],
+          tips: "拡張機能の追加・削除・設定が可能。",
+          related: ["/mcp"]
+        }
+      },
+      {
+        cmd: "/bashes",
+        desc: "バックグラウンドタスクを一覧・管理",
+        cat: "advanced",
+        details: {
+          args: [],
+          examples: ["/bashes"],
+          tips: "実行中のバックグラウンドシェルタスクを確認・管理できます。",
+          related: ["/tasks"]
+        }
+      },
+      {
+        cmd: "/tasks",
+        desc: "実行中のタスクを表示",
+        cat: "advanced",
+        details: {
+          args: [],
+          examples: ["/tasks"],
+          tips: "バックグラウンドで実行中のエージェントやタスクの状態を確認。",
+          related: ["/bashes", "/agents"]
+        }
+      },
+      {
+        cmd: "/todos",
+        desc: "現在のTODOアイテムを一覧表示",
+        cat: "advanced",
+        details: {
+          args: [],
+          examples: ["/todos"],
+          tips: "Claudeが追跡しているTODOリストを確認できます。",
+          related: ["/tasks"]
+        }
+      },
+      {
+        cmd: "/ide",
+        desc: "IDE統合を管理し、ステータスを表示",
+        cat: "advanced",
+        details: {
+          args: [],
+          examples: ["/ide"],
+          tips: "VS Code等のIDE連携の設定と状態確認。",
+          related: ["/config"]
+        }
+      },
     ];
 
     const categoryLabels = {
@@ -682,7 +1404,24 @@
     const viewBtns = document.querySelectorAll('.view-btn');
     const toast = document.getElementById('toast');
 
+    // モーダル要素
+    const modalOverlay = document.getElementById('modal-overlay');
+    const modalClose = document.getElementById('modal-close');
+    const modalTag = document.getElementById('modal-tag');
+    const modalCmd = document.getElementById('modal-cmd');
+    const modalDesc = document.getElementById('modal-desc');
+    const modalArgsSection = document.getElementById('modal-args-section');
+    const modalArgsList = document.getElementById('modal-args-list');
+    const modalExamplesSection = document.getElementById('modal-examples-section');
+    const modalExamplesList = document.getElementById('modal-examples-list');
+    const modalTipsSection = document.getElementById('modal-tips-section');
+    const modalTipsText = document.getElementById('modal-tips-text');
+    const modalRelatedSection = document.getElementById('modal-related-section');
+    const modalRelatedList = document.getElementById('modal-related-list');
+    const modalCopyBtn = document.getElementById('modal-copy-btn');
+
     let currentCategory = 'all';
+    let currentCommand = null;
     let currentView = localStorage.getItem('commandView') || 'list';
     let toastTimeout;
 
@@ -741,7 +1480,10 @@
 
         list.querySelectorAll('.command-item').forEach(item => {
           item.addEventListener('click', () => {
-            copyCommand(item.dataset.cmd, item);
+            const command = commands.find(c => c.cmd === item.dataset.cmd);
+            if (command) {
+              openModal(command);
+            }
           });
         });
       }
@@ -826,6 +1568,89 @@
       list.classList.toggle('grid-view', view === 'grid');
     }
 
+    // === モーダル ===
+    function openModal(command) {
+      currentCommand = command;
+
+      // ヘッダー
+      modalTag.textContent = categoryLabels[command.cat];
+      modalCmd.textContent = command.cmd;
+      modalDesc.textContent = command.desc;
+
+      // 引数
+      if (command.details.args && command.details.args.length > 0) {
+        modalArgsSection.style.display = 'block';
+        modalArgsList.innerHTML = command.details.args.map(arg => `
+          <li class="modal-arg-item">
+            <span class="modal-arg-name">${arg.name}</span>
+            <span class="modal-arg-optional">${arg.optional ? '(任意)' : '(必須)'}</span>
+            <span class="modal-arg-desc">${arg.desc}</span>
+          </li>
+        `).join('');
+      } else {
+        modalArgsSection.style.display = 'none';
+      }
+
+      // 使用例
+      if (command.details.examples && command.details.examples.length > 0) {
+        modalExamplesSection.style.display = 'block';
+        modalExamplesList.innerHTML = command.details.examples.map(ex => `
+          <li class="modal-example-item" data-example="${ex}">
+            <span>${ex}</span>
+            <span class="modal-example-copy">クリックでコピー</span>
+          </li>
+        `).join('');
+
+        // 使用例クリックでコピー
+        modalExamplesList.querySelectorAll('.modal-example-item').forEach(item => {
+          item.addEventListener('click', () => {
+            navigator.clipboard.writeText(item.dataset.example);
+            showToast(`${item.dataset.example} をコピーしました`);
+          });
+        });
+      } else {
+        modalExamplesSection.style.display = 'none';
+      }
+
+      // Tips
+      if (command.details.tips) {
+        modalTipsSection.style.display = 'block';
+        modalTipsText.textContent = command.details.tips;
+      } else {
+        modalTipsSection.style.display = 'none';
+      }
+
+      // 関連コマンド
+      if (command.details.related && command.details.related.length > 0) {
+        modalRelatedSection.style.display = 'block';
+        modalRelatedList.innerHTML = command.details.related.map(rel => `
+          <button class="modal-related-chip" data-cmd="${rel}">${rel}</button>
+        `).join('');
+
+        // 関連コマンドクリックで別のモーダルを開く
+        modalRelatedList.querySelectorAll('.modal-related-chip').forEach(chip => {
+          chip.addEventListener('click', () => {
+            const relatedCmd = commands.find(c => c.cmd.startsWith(chip.dataset.cmd));
+            if (relatedCmd) {
+              openModal(relatedCmd);
+            }
+          });
+        });
+      } else {
+        modalRelatedSection.style.display = 'none';
+      }
+
+      // モーダルを表示
+      modalOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modalOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+      currentCommand = null;
+    }
+
     // === イベントリスナー設定 ===
 
     // 検索入力
@@ -890,6 +1715,30 @@
     // タブスクロール監視
     filters.addEventListener('scroll', updateScrollIndicator);
     window.addEventListener('resize', updateScrollIndicator);
+
+    // モーダル閉じるボタン
+    modalClose.addEventListener('click', closeModal);
+
+    // モーダルオーバーレイクリックで閉じる
+    modalOverlay.addEventListener('click', e => {
+      if (e.target === modalOverlay) closeModal();
+    });
+
+    // ESCキーでモーダルを閉じる
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && modalOverlay.classList.contains('open')) {
+        closeModal();
+      }
+    });
+
+    // モーダルのコピーボタン
+    modalCopyBtn.addEventListener('click', () => {
+      if (currentCommand) {
+        const baseCmd = currentCommand.cmd.split(' ')[0];
+        navigator.clipboard.writeText(baseCmd);
+        showToast(`${baseCmd} をコピーしました`);
+      }
+    });
 
     // === 初期化 ===
     render();
